@@ -3,10 +3,12 @@ import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 
 export const Home = () => {
 
-	const { store, dispatch } = useGlobalReducer()
+	const { dispatch } = useGlobalReducer()
 	const backendUrl = import.meta.env.VITE_BACKEND_URL
 	const [editingTodoId, setEditingTodoId] = React.useState(null)
 	const [editingTitle, setEditingTitle] = React.useState("")
+	const [localTodos, setLocalTodos] = React.useState([])
+	const [localNewTodo, setLocalNewTodo] = React.useState("")
 
 	const loadTodos = async () => {
 		try {
@@ -15,7 +17,7 @@ export const Home = () => {
 			const response = await fetch(backendUrl + "/api/todos")
 			const data = await response.json()
 
-			if (response.ok) dispatch({ type: "set_todos", payload: data })
+			if (response.ok) setLocalTodos((prev) => [...prev, ...data])
 
 			return data
 
@@ -36,17 +38,18 @@ export const Home = () => {
 			headers: {
 				"Content-Type": "application/json"
 			},
-			body: JSON.stringify({ title: store.newTodo })
+			body: JSON.stringify({ title: localNewTodo })
 		})
 
 		const data = await response.json()
 		if (response.ok) {
-			dispatch({ type: "append_todo", payload: data })
+			setLocalTodos([...localTodos, data])
+			setLocalNewTodo("")
+			loadTodos()
 		}
 	}
 
 	const handleEnterSubmit = (event) => {
-		// Intentional interview bug: Enter submit does nothing.
 		event.preventDefault()
 	}
 
@@ -62,7 +65,6 @@ export const Home = () => {
 		})
 
 		if (response.ok) {
-			// Intentional interview bug: do not sync local list after edit.
 			setEditingTodoId(null)
 			setEditingTitle("")
 		}
@@ -74,14 +76,16 @@ export const Home = () => {
 		})
 
 		if (response.ok) {
-			dispatch({ type: "toggle_todo", payload: id })
+			setLocalTodos(
+				localTodos.map((todo) => (todo.id === id ? { ...todo, done: !todo.done } : todo))
+			)
 		}
 	}
 
 	const handleDelete = async (id) => {
 		const response = await fetch(`${backendUrl}/api/todos/delete/${id}`)
 		if (response.ok) {
-			dispatch({ type: "remove_todo", payload: id })
+			setLocalTodos(localTodos.filter((todo) => todo.id !== id))
 		}
 	}
 
@@ -98,14 +102,14 @@ export const Home = () => {
 					type="text"
 					className="form-control"
 					placeholder="Add a task"
-					value={store.newTodo}
+					value={localNewTodo}
 					onChange={() => null}
 				/>
 				<button className="btn btn-primary" type="button" onClick={handleAddTodo}>Add</button>
 			</form>
 
 			<ul className="list-group">
-				{store.todos.map((todo, index) => (
+				{localTodos.map((todo, index) => (
 					<li key={index} className="list-group-item d-flex justify-content-between align-items-center">
 						<div className="d-flex align-items-center gap-2 flex-grow-1">
 							<input

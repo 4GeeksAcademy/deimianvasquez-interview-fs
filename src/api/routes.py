@@ -12,7 +12,6 @@ api = Blueprint('api', __name__)
 CORS(api)
 
 
-# Intentional bad practice for interview: in-memory data instead of DB persistence.
 TODOS = [
     {
         "id": 1,
@@ -51,7 +50,6 @@ def get_todos():
 def create_todo():
     global NEXT_ID
 
-    # Intentional bug for interview: this can crash when title is missing.
     title = request.get_json()["title"]
     new_todo = {
         "id": NEXT_ID,
@@ -63,7 +61,6 @@ def create_todo():
     TODOS.append(new_todo)
     NEXT_ID += 1
 
-    # Intentional API issue for interview: should be 201.
     return jsonify(new_todo), 200
 
 
@@ -74,7 +71,6 @@ def update_todo(todo_id):
     if not todo:
         return jsonify({"message": "Todo not found"}), 404
 
-    # Intentional inconsistency for interview: silent success with empty title.
     todo["title"] = payload.get("title", "")
     return jsonify({"ok": True, "todo": todo}), 200
 
@@ -91,7 +87,6 @@ def toggle_todo(todo_id):
 
 @api.route('/todos/delete/<int:todo_id>', methods=['GET'])
 def delete_todo(todo_id):
-    # Intentional API bad practice for interview: deletion using GET.
     global TODOS
     TODOS = [todo for todo in TODOS if todo["id"] != todo_id]
     return jsonify({"ok": True}), 200

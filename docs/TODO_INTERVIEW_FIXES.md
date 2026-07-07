@@ -1,27 +1,29 @@
-# TODO Fullstack - Lista de Ejemplos
+# TODO Fullstack - Lista Incremental de Ejemplos
 
-[ ] Al escribir en la tarea no escribe en el input
+1. [ ] - Al escribir en la tarea no escribe en el input.
 
-[ ] Al escribir en la tarea y darle enter no se agrega 
+2. [ ] - Al escribir en la tarea y darle Enter no se agrega.
 
-[ ] Al eliminar una tarea, a veces la lista se comporta raro.
+3. [ ] - Cuando falla el backend, la UI no muestra ningun mensaje de error.
 
-[ ] Al editar una tarea, el cambio no se refleja hasta recargar la pagina.
+4. [ ] - Al eliminar una tarea, a veces la lista se comporta raro.
 
-[ ] Si agrego y elimino rapido, aparecen tareas duplicadas en pantalla.
+5. [ ] - Al editar una tarea, el cambio no se refleja hasta recargar la pagina.
 
-[ ] Cuando falla el backend, la UI no muestra ningun mensaje de error.
+6. [ ] - Si agrego y elimino rapido, aparecen tareas duplicadas en pantalla.
 
-[ ] Si el body viene mal en el POST, el backend responde con error interno.
+7. [ ] - Al marcar/desmarcar tareas en paralelo, se pisan cambios y queda un estado incorrecto.
 
-[ ] Al crear una tarea, el endpoint responde con status incorrecto.
+8. [ ] - Si el body viene mal en el POST, el backend responde con error interno.
 
-[ ] Se puede eliminar una tarea usando GET en vez de DELETE.
+9. [ ] - Al crear una tarea, el endpoint responde con status incorrecto.
 
-[ ] Al marcar/desmarcar tareas en paralelo, se pisan cambios y queda un estado incorrecto.
+10. [ ] - Se puede eliminar una tarea usando GET en vez de DELETE.
 
-[ ] Al reiniciar el servidor, las tareas desaparecen.
+11. [ ] - La API devuelve datos de mas o sin validacion consistente entre endpoints.
 
-[ ] No se tiene percistencia en los datos
+12. [ ] - Las tareas se manejan en el estado local del componente y no en el estado global.
 
-[ ] La API devuelve datos de mas o sin validacion consistente entre endpoints.
+13. [ ] - Al reiniciar el servidor, las tareas desaparecen.
+
+14. [ ] - No se tiene persistencia en los datos.

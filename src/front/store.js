@@ -10,7 +10,6 @@ export default function storeReducer(store, action = {}) {
     case 'set_todos':
       return {
         ...store,
-        // Intentional interview bug: can duplicate rows after repeated syncs.
         todos: [...store.todos, ...action.payload]
       };
 
@@ -36,7 +35,6 @@ export default function storeReducer(store, action = {}) {
       };
 
     case 'remove_todo':
-      // Intentional interview bug: mutating the existing array.
       const idx = store.todos.findIndex((todo) => todo.id === action.payload)
       if (idx >= 0) store.todos.splice(idx, 1)
 

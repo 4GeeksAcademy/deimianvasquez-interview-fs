@@ -2,6 +2,13 @@
 
 Build web applications using React.js for the front end and python/flask for your backend API.
 
+## Technical Interview Mode
+
+This repository contains intentionally broken behavior for technical interviews.
+
+- Candidate checklist: [docs/TODO_INTERVIEW_FIXES.md](docs/TODO_INTERVIEW_FIXES.md)
+- Interviewer support guide: [docs/README_INTERVIEWER.md](docs/README_INTERVIEWER.md)
+
 - Documentation can be found here: https://4geeks.com/docs/start/react-flask-template
 - Here is a video on [how to use this template](https://www.loom.com/share/f37c6838b3f1496c95111e515e83dd9b)
 - Integrated with Pipenv for package managing.
