@@ -6,7 +6,7 @@
 
 3. [ ] - Cuando falla el backend, la UI no muestra ningun mensaje de error.
 
-4. [ ] - Al eliminar una tarea, a veces la lista se comporta raro.
+4. [ ] - No elimina tareas.
 
 5. [ ] - Al editar una tarea, el cambio no se refleja hasta recargar la pagina.
 
